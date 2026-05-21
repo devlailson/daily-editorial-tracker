@@ -1,0 +1,47 @@
+
+.ced-wrap h1 {
+    margin-bottom: 20px;
+}
+
+.ced-filtros {
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #dcdcde;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: end;
+}
+
+.ced-filtros label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.ced-filtros span {
+    margin-bottom: 4px;
+}
+
+.ced-table {
+    background: #fff;
+}
+
+.ced-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.ced-ok {
+    background: #d1f7d6;
+    color: #116b1f;
+}
+
+.ced-alert {
+    background: #ffe0e0;
+    color: #9b111e;
+}
