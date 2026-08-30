@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Daily Editorial Tracker 1.1.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/daily-editorial-tracker\n"
+"POT-Creation-Date: 2026-08-29 00:00+0000\n"
+"PO-Revision-Date: 2026-08-29 00:00+0000\n"
+"Last-Translator: Lailson Oliveira\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: daily-editorial-tracker\n"
+
+msgid "Editorial Tracker"
+msgstr "Controle Editorial"
+
+msgid "Today's Editorial Summary"
+msgstr "Resumo editorial de hoje"
+
+msgid "You do not have permission to access this page."
+msgstr "Você não tem permissão para acessar esta página."
+
+msgid "Daily Editorial Tracker"
+msgstr "Controle Editorial Diário"
+
+msgid "Start date"
+msgstr "Data inicial"
+
+msgid "End date"
+msgstr "Data final"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Published"
+msgstr "Publicados"
+
+msgid "Drafts"
+msgstr "Rascunhos"
+
+msgid "Pending"
+msgstr "Pendentes"
+
+msgid "Scheduled"
+msgstr "Agendados"
+
+msgid "Goal per author"
+msgstr "Meta por autor"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Export CSV"
+msgstr "Exportar CSV"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Goal"
+msgstr "Meta"
+
+msgid "Goal status"
+msgstr "Status da meta"
+
+msgid "Posts"
+msgstr "Posts"
+
+msgid "Goal reached"
+msgstr "Meta alcançada"
+
+msgid "Below goal"
+msgstr "Abaixo da meta"
+
+msgid "View posts"
+msgstr "Ver posts"
+
+msgid "No posts found for this period."
+msgstr "Nenhum post encontrado neste período."
+
+msgid "Grand total"
+msgstr "Total geral"
+
+msgid "You do not have permission to export this report."
+msgstr "Você não tem permissão para exportar este relatório."
+
+msgid "No posts published today."
+msgstr "Nenhum post publicado hoje."
+
+msgid "Open Editorial Tracker"
+msgstr "Abrir Controle Editorial"
+
+msgid "%d post"
+msgid_plural "%d posts"
+msgstr[0] "%d post"
+msgstr[1] "%d posts"
+
+msgid "View full report"
+msgstr "Ver relatório completo"

@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Daily Editorial Tracker 1.1.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/daily-editorial-tracker\n"
+"POT-Creation-Date: 2026-08-29 00:00+0000\n"
+"PO-Revision-Date: 2026-08-29 00:00+0000\n"
+"Last-Translator: Lailson Oliveira\n"
+"Language-Team: Spanish (Spain)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: daily-editorial-tracker\n"
+
+msgid "Editorial Tracker"
+msgstr "Seguimiento editorial"
+
+msgid "Today's Editorial Summary"
+msgstr "Resumen editorial de hoy"
+
+msgid "You do not have permission to access this page."
+msgstr "No tienes permiso para acceder a esta página."
+
+msgid "Daily Editorial Tracker"
+msgstr "Seguimiento editorial diario"
+
+msgid "Start date"
+msgstr "Fecha de inicio"
+
+msgid "End date"
+msgstr "Fecha de fin"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Published"
+msgstr "Publicadas"
+
+msgid "Drafts"
+msgstr "Borradores"
+
+msgid "Pending"
+msgstr "Pendientes"
+
+msgid "Scheduled"
+msgstr "Programadas"
+
+msgid "Goal per author"
+msgstr "Objetivo por autor"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Export CSV"
+msgstr "Exportar CSV"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Goal"
+msgstr "Objetivo"
+
+msgid "Goal status"
+msgstr "Estado del objetivo"
+
+msgid "Posts"
+msgstr "Entradas"
+
+msgid "Goal reached"
+msgstr "Objetivo alcanzado"
+
+msgid "Below goal"
+msgstr "Por debajo del objetivo"
+
+msgid "View posts"
+msgstr "Ver entradas"
+
+msgid "No posts found for this period."
+msgstr "No se encontraron entradas para este período."
+
+msgid "Grand total"
+msgstr "Total general"
+
+msgid "You do not have permission to export this report."
+msgstr "No tienes permiso para exportar este informe."
+
+msgid "No posts published today."
+msgstr "No hay entradas publicadas hoy."
+
+msgid "Open Editorial Tracker"
+msgstr "Abrir seguimiento editorial"
+
+#. translators: %d: Number of posts.
+msgid "%d post"
+msgid_plural "%d posts"
+msgstr[0] "%d entrada"
+msgstr[1] "%d entradas"
+
+msgid "View full report"
+msgstr "Ver informe completo"

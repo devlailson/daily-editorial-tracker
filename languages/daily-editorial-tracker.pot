@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Daily Editorial Tracker 1.1.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/daily-editorial-tracker\n"
+"POT-Creation-Date: 2026-08-29 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: daily-editorial-tracker\n"
+
+msgid "Editorial Tracker"
+msgstr ""
+
+msgid "Today's Editorial Summary"
+msgstr ""
+
+msgid "You do not have permission to access this page."
+msgstr ""
+
+msgid "Daily Editorial Tracker"
+msgstr ""
+
+msgid "Start date"
+msgstr ""
+
+msgid "End date"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Drafts"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Scheduled"
+msgstr ""
+
+msgid "Goal per author"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Export CSV"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Goal"
+msgstr ""
+
+msgid "Goal status"
+msgstr ""
+
+msgid "Posts"
+msgstr ""
+
+msgid "Goal reached"
+msgstr ""
+
+msgid "Below goal"
+msgstr ""
+
+msgid "View posts"
+msgstr ""
+
+msgid "No posts found for this period."
+msgstr ""
+
+msgid "Grand total"
+msgstr ""
+
+msgid "You do not have permission to export this report."
+msgstr ""
+
+msgid "No posts published today."
+msgstr ""
+
+msgid "Open Editorial Tracker"
+msgstr ""
+
+#. translators: %d: Number of posts.
+msgid "%d post"
+msgid_plural "%d posts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "View full report"
+msgstr ""
