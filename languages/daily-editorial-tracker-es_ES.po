@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Daily Editorial Tracker 1.1.2\n"
+"Project-Id-Version: Daily Editorial Tracker 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/daily-editorial-tracker\n"
-"POT-Creation-Date: 2026-08-29 00:00+0000\n"
-"PO-Revision-Date: 2026-08-29 00:00+0000\n"
+"POT-Creation-Date: 2026-09-08 00:00+0000\n"
+"PO-Revision-Date: 2026-09-08 00:00+0000\n"
 "Last-Translator: Lailson Oliveira\n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -46,8 +46,20 @@ msgstr "Pendientes"
 msgid "Scheduled"
 msgstr "Programadas"
 
-msgid "Goal per author"
-msgstr "Objetivo por autor"
+msgid "You do not have permission to manage author goals."
+msgstr "No tienes permiso para gestionar los objetivos de los autores."
+
+msgid "Author goals saved successfully."
+msgstr "Los objetivos de los autores se guardaron correctamente."
+
+msgid "Individual author goals"
+msgstr "Objetivos individuales por autor"
+
+msgid "Set a different editorial goal for each author."
+msgstr "Define un objetivo editorial diferente para cada autor."
+
+msgid "Save author goals"
+msgstr "Guardar objetivos de los autores"
 
 msgid "Filter"
 msgstr "Filtrar"

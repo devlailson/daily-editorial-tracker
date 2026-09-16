@@ -2,9 +2,15 @@
 Contributors: lailsonoliveira
 Tags: editorial, publishing, posts, reports, newsroom
 Requires at least: 6.0
-Tested up to: 7.1
+<<<<<<< HEAD
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.1.2
+Stable tag: 1.2.0
+=======
+Tested up to: 6.8
+Requires PHP: 7.4
+Stable tag: 1.2.0
+>>>>>>> 7dc0dd3 (Release 1.2.0 - Editorial goals per author, fix Tested up to)
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,8 +24,13 @@ Use the report screen to:
 
 * Filter posts by start and end date.
 * Filter by published, draft, pending, or scheduled status.
+<<<<<<< HEAD
 * Set an editorial goal per author.
 * See whether each author has reached the selected goal.
+=======
+* Set and save a different editorial goal for each author.
+* See whether each author has reached their saved goal.
+>>>>>>> 7dc0dd3 (Release 1.2.0 - Editorial goals per author, fix Tested up to)
 * Open the filtered author's posts from the report.
 * Export report data as a CSV file.
 * View a summary of today's published posts in the WordPress dashboard.
@@ -52,6 +63,16 @@ No. All report data stays in your WordPress installation.
 
 == Changelog ==
 
+<<<<<<< HEAD
+=======
+= 1.2.0 =
+* Added persistent individual editorial goals for each author.
+* Applied each author's saved goal to the report and CSV export.
+* Added a responsive author-goal settings panel.
+* Fixed dashboard widget links after the report moved to the Tools menu.
+* Updated Brazilian Portuguese and Spanish translations.
+
+>>>>>>> 7dc0dd3 (Release 1.2.0 - Editorial goals per author, fix Tested up to)
 = 1.1.2 =
 * Added Brazilian Portuguese and Spanish translation files.
 * Added a POT template to support future translations.
@@ -73,3 +94,11 @@ No. All report data stays in your WordPress installation.
 
 = 1.0.0 =
 * Initial release.
+<<<<<<< HEAD
+=======
+
+== Upgrade Notice ==
+
+= 1.2.0 =
+Author goals are now saved individually. Review the new author-goal panel after updating.
+>>>>>>> 7dc0dd3 (Release 1.2.0 - Editorial goals per author, fix Tested up to)

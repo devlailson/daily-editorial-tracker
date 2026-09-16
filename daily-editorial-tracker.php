@@ -3,10 +3,10 @@
  * Plugin Name: Daily Editorial Tracker
  * Plugin URI: https://github.com/devlailson/daily-editorial-tracker
  * Description: Track daily editorial activity by author, date range, post status, goals, and CSV reports.
- * Version: 1.1.2
+ * Version: 1.2.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
- * Tested up to: 7.1
+ * Tested up to: 6.8
  * Author: Lailson Oliveira
  * Author URI: https://lailson.dev
  * License: GPLv2 or later
@@ -19,13 +19,15 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('DAILY_EDITORIAL_TRACKER_VERSION', '1.1.2');
+define('DAILY_EDITORIAL_TRACKER_VERSION', '1.2.0');
 define('DAILY_EDITORIAL_TRACKER_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('DAILY_EDITORIAL_TRACKER_GOAL_META_KEY', '_daily_editorial_tracker_goal');
 
 add_action('init', 'daily_editorial_tracker_load_textdomain');
 add_action('admin_menu', 'daily_editorial_tracker_add_admin_menu');
 add_action('admin_enqueue_scripts', 'daily_editorial_tracker_admin_assets');
 add_action('admin_post_daily_editorial_tracker_export_csv', 'daily_editorial_tracker_export_csv');
+add_action('admin_post_daily_editorial_tracker_save_goals', 'daily_editorial_tracker_save_goals');
 add_action('wp_dashboard_setup', 'daily_editorial_tracker_register_dashboard_widget');
 
 /**
@@ -76,6 +78,56 @@ function daily_editorial_tracker_admin_assets($hook) {
 
 function daily_editorial_tracker_allowed_statuses() {
     return array('publish', 'draft', 'pending', 'future');
+}
+
+/**
+ * Get an author's saved editorial goal.
+ */
+function daily_editorial_tracker_get_author_goal($user_id) {
+    $goal = absint(get_user_meta($user_id, DAILY_EDITORIAL_TRACKER_GOAL_META_KEY, true));
+
+    return $goal > 0 ? $goal : 5;
+}
+
+/**
+ * Save the individual goals configured for authors.
+ */
+function daily_editorial_tracker_save_goals() {
+    if (!current_user_can('manage_options')) {
+        wp_die(esc_html__('You do not have permission to manage author goals.', 'daily-editorial-tracker'));
+    }
+
+    check_admin_referer('daily_editorial_tracker_save_goals');
+
+    $goals = isset($_POST['author_goals']) && is_array($_POST['author_goals'])
+        ? wp_unslash($_POST['author_goals'])
+        : array();
+
+    foreach ($goals as $user_id => $goal) {
+        $user_id = absint($user_id);
+        $goal    = absint($goal);
+
+        if (!$user_id || !get_userdata($user_id) || !user_can($user_id, 'edit_posts')) {
+            continue;
+        }
+
+        update_user_meta(
+            $user_id,
+            DAILY_EDITORIAL_TRACKER_GOAL_META_KEY,
+            max(1, min(9999, $goal))
+        );
+    }
+
+    wp_safe_redirect(
+        add_query_arg(
+            array(
+                'page'          => 'daily-editorial-tracker',
+                'goals-updated' => '1',
+            ),
+            admin_url('tools.php')
+        )
+    );
+    exit;
 }
 
 function daily_editorial_tracker_sanitize_date($date, $fallback) {
@@ -138,22 +190,62 @@ function daily_editorial_tracker_render_page() {
     $start_date = ($valid_filter_nonce && isset($_GET['start_date'])) ? daily_editorial_tracker_sanitize_date(sanitize_text_field(wp_unslash($_GET['start_date'])), $today) : $today;
     $end_date   = ($valid_filter_nonce && isset($_GET['end_date'])) ? daily_editorial_tracker_sanitize_date(sanitize_text_field(wp_unslash($_GET['end_date'])), $today) : $today;
     $status     = ($valid_filter_nonce && isset($_GET['status'])) ? sanitize_text_field(wp_unslash($_GET['status'])) : 'publish';
-    $goal       = ($valid_filter_nonce && isset($_GET['goal'])) ? absint($_GET['goal']) : 5;
-
-    if ($goal < 1) {
-        $goal = 1;
-    }
-
     if (!in_array($status, daily_editorial_tracker_allowed_statuses(), true)) {
         $status = 'publish';
     }
 
     $results = daily_editorial_tracker_get_report_data($start_date, $end_date, $status);
+    $authors = get_users(
+        array(
+            'capability' => 'edit_posts',
+            'fields'     => array('ID', 'display_name', 'user_email'),
+            'orderby'    => 'display_name',
+            'order'      => 'ASC',
+        )
+    );
     $grand_total = 0;
     ?>
 
     <div class="wrap ced-wrap">
         <h1><?php echo esc_html__('Daily Editorial Tracker', 'daily-editorial-tracker'); ?></h1>
+
+        <?php if (isset($_GET['goals-updated']) && '1' === sanitize_text_field(wp_unslash($_GET['goals-updated']))) : ?>
+            <div class="notice notice-success is-dismissible">
+                <p><?php echo esc_html__('Author goals saved successfully.', 'daily-editorial-tracker'); ?></p>
+            </div>
+        <?php endif; ?>
+
+        <div class="ced-goals">
+            <h2><?php echo esc_html__('Individual author goals', 'daily-editorial-tracker'); ?></h2>
+            <p><?php echo esc_html__('Set a different editorial goal for each author.', 'daily-editorial-tracker'); ?></p>
+
+            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                <input type="hidden" name="action" value="daily_editorial_tracker_save_goals">
+                <?php wp_nonce_field('daily_editorial_tracker_save_goals'); ?>
+
+                <div class="ced-goal-grid">
+                    <?php foreach ($authors as $author) : ?>
+                        <label>
+                            <span>
+                                <?php echo esc_html($author->display_name); ?>
+                                <small><?php echo esc_html($author->user_email); ?></small>
+                            </span>
+                            <input
+                                type="number"
+                                name="author_goals[<?php echo esc_attr($author->ID); ?>]"
+                                value="<?php echo esc_attr(daily_editorial_tracker_get_author_goal($author->ID)); ?>"
+                                min="1"
+                                max="9999"
+                            >
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+
+                <button type="submit" class="button button-primary">
+                    <?php echo esc_html__('Save author goals', 'daily-editorial-tracker'); ?>
+                </button>
+            </form>
+        </div>
 
         <form method="get" class="ced-filtros">
             <input type="hidden" name="page" value="daily-editorial-tracker">
@@ -179,11 +271,6 @@ function daily_editorial_tracker_render_page() {
                 </select>
             </label>
 
-            <label>
-                <span><?php echo esc_html__('Goal per author', 'daily-editorial-tracker'); ?></span>
-                <input type="number" name="goal" value="<?php echo esc_attr($goal); ?>" min="1">
-            </label>
-
             <button class="button button-primary"><?php echo esc_html__('Filter', 'daily-editorial-tracker'); ?></button>
 
             <?php
@@ -191,8 +278,7 @@ function daily_editorial_tracker_render_page() {
                 admin_url(
                     'admin-post.php?action=daily_editorial_tracker_export_csv&start_date=' . rawurlencode($start_date) .
                     '&end_date=' . rawurlencode($end_date) .
-                    '&status=' . rawurlencode($status) .
-                    '&goal=' . rawurlencode($goal)
+                    '&status=' . rawurlencode($status)
                 ),
                 'daily_editorial_tracker_export_csv'
             );
@@ -221,6 +307,7 @@ function daily_editorial_tracker_render_page() {
                         <?php
                         $total = intval($item->total);
                         $grand_total += $total;
+                        $goal = daily_editorial_tracker_get_author_goal($item->ID);
                         $goal_reached = $total >= $goal;
                         ?>
                         <tr>
@@ -274,12 +361,6 @@ function daily_editorial_tracker_export_csv() {
     $start_date = isset($_GET['start_date']) ? daily_editorial_tracker_sanitize_date(sanitize_text_field(wp_unslash($_GET['start_date'])), $today) : $today;
     $end_date   = isset($_GET['end_date']) ? daily_editorial_tracker_sanitize_date(sanitize_text_field(wp_unslash($_GET['end_date'])), $today) : $today;
     $status     = isset($_GET['status']) ? sanitize_text_field(wp_unslash($_GET['status'])) : 'publish';
-    $goal       = isset($_GET['goal']) ? absint($_GET['goal']) : 5;
-
-    if ($goal < 1) {
-        $goal = 1;
-    }
-
     $results = daily_editorial_tracker_get_report_data($start_date, $end_date, $status);
 
     nocache_headers();
@@ -301,6 +382,7 @@ function daily_editorial_tracker_export_csv() {
 
     foreach ($results as $item) {
         $total = intval($item->total);
+        $goal  = daily_editorial_tracker_get_author_goal($item->ID);
 
         fputcsv(
             $output,
@@ -341,7 +423,7 @@ function daily_editorial_tracker_dashboard_widget_render() {
 
     if (empty($results)) {
         echo '<p>' . esc_html__('No posts published today.', 'daily-editorial-tracker') . '</p>';
-        echo '<p><a class="button button-primary" href="' . esc_url(admin_url('admin.php?page=daily-editorial-tracker')) . '">' . esc_html__('Open Editorial Tracker', 'daily-editorial-tracker') . '</a></p>';
+        echo '<p><a class="button button-primary" href="' . esc_url(admin_url('tools.php?page=daily-editorial-tracker')) . '">' . esc_html__('Open Editorial Tracker', 'daily-editorial-tracker') . '</a></p>';
         return;
     }
 
@@ -358,5 +440,5 @@ function daily_editorial_tracker_dashboard_widget_render() {
     }
 
     echo '</ul>';
-    echo '<p><a class="button button-primary" href="' . esc_url(admin_url('admin.php?page=daily-editorial-tracker')) . '">' . esc_html__('View full report', 'daily-editorial-tracker') . '</a></p>';
+    echo '<p><a class="button button-primary" href="' . esc_url(admin_url('tools.php?page=daily-editorial-tracker')) . '">' . esc_html__('View full report', 'daily-editorial-tracker') . '</a></p>';
 }

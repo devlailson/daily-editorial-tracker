@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Daily Editorial Tracker 1.1.2\n"
+"Project-Id-Version: Daily Editorial Tracker 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/daily-editorial-tracker\n"
-"POT-Creation-Date: 2026-08-29 00:00+0000\n"
+"POT-Creation-Date: 2026-09-08 00:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,7 +41,19 @@ msgstr ""
 msgid "Scheduled"
 msgstr ""
 
-msgid "Goal per author"
+msgid "You do not have permission to manage author goals."
+msgstr ""
+
+msgid "Author goals saved successfully."
+msgstr ""
+
+msgid "Individual author goals"
+msgstr ""
+
+msgid "Set a different editorial goal for each author."
+msgstr ""
+
+msgid "Save author goals"
 msgstr ""
 
 msgid "Filter"

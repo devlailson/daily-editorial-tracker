@@ -3,6 +3,49 @@
     margin-bottom: 20px;
 }
 
+.ced-goals {
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #dcdcde;
+    margin-bottom: 20px;
+}
+
+.ced-goals h2 {
+    margin-top: 0;
+}
+
+.ced-goal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.ced-goal-grid label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+}
+
+.ced-goal-grid span {
+    font-weight: 600;
+}
+
+.ced-goal-grid small {
+    display: block;
+    margin-top: 2px;
+    color: #646970;
+    font-weight: 400;
+}
+
+.ced-goal-grid input {
+    width: 80px;
+}
+
 .ced-filtros {
     background: #fff;
     padding: 16px;
